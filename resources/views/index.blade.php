@@ -26,7 +26,10 @@
 				@else
 				<div id="tweets" class="tab-pane fade">
 				@endif
-					<div class="flex-center" style="margin-top: 40px"><i class="fa fa-spinner fa-5x fa-spin"></i></div>
+					<div class="flex-center" style="margin-top: 40px">
+						<i class="fa fa-spinner fa-5x fa-spin"></i>
+						<p class="text-center">Loading tweets ... </p>
+					</div>
 				</div>
 				@if($noPage)
 				<div id="stories" class="tab-pane fade">
