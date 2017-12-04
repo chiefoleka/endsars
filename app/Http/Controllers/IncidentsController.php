@@ -39,7 +39,7 @@ class IncidentsController extends Controller
 
     	$connection = new TwitterOAuth(env('TWITTER_CKEY'), env('TWITTER_CSECRET'), $access_token, $access_token_secret);
 
-    	$tweets = $connection->get("search/tweets", ["q" => "%23EndSARS", "count" => 100, "exclude_replies" => true]);
+    	$tweets = $connection->get("search/tweets", ["q" => "%23EndSARS", "count" => 30, "exclude_replies" => true]);
     	
     	foreach ($tweets->statuses as $tweet) {
     		$tweet->date = \Carbon\Carbon::parse($tweet->created_at);
