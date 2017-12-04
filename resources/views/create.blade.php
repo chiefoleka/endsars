@@ -79,7 +79,7 @@
 		            		<br><hr>
 		            		<div class="row {{ $errors->has('actions') ? ' has-error' : '' }}">
 		            			@foreach($actions as $action)
-	            				<span class="col-md-4" style="margin-bottom: 10px">
+	            				<span class="col-md-6" style="margin-bottom: 10px">
 	            					<input type="checkbox" name="actions[]" value="{{$action->id}}"> {{$action->name}}
 	            				</span>
 	            				@endforeach
