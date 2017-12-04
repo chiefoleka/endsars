@@ -95,7 +95,7 @@
 		            	<hr>
 		            	@if(Auth::check())
 						<div class="form-group">
-		            		<input type="submit" value="Share" class="btn btn-primary btn-lg pull-right">
+		            		<input type="submit" id="submit" value="Share" class="btn btn-primary btn-lg pull-right">
 		            	</div>
 		            	@else
 		            	<div class="form-group">
@@ -145,7 +145,7 @@
 						<hr>
 			        	<div class="form-group">
 			        		<a data-toggle="tab" href="#incident"><button class="btn btn-default btn-lg">Back</button></a>
-		            		<input type="submit" name="Share" class="btn btn-success btn-lg pull-right">
+		            		<input type="submit" id="submit" name="Share" class="btn btn-success btn-lg pull-right">
 		            	</div>
 			        </div>
 			        @endif
@@ -154,4 +154,24 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script src="{{ asset('js/tinymce/tinymce.min.js')}}"></script>
+<script>
+	tinymce.init({ 
+		selector:'textarea',
+		menubar:false,
+    	statusbar: false,
+		branding: false 
+	});
+
+	var submit 		= document.getElementById('submit')
+
+	submit.addEventListener('click', function(e){
+		tinyMCE.triggerSave()
+		document.querySelector('.form').submit()
+
+	})
+
+</script>
 @endsection

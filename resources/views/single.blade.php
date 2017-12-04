@@ -11,7 +11,7 @@
             </div>
             <hr>
             <div class="incident">
-            	{{$incident->incident}}
+            	{!! $incident->incident !!}
             </div>
             @if(!empty($incident->actions))
             <div>
