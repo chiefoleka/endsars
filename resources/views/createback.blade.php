@@ -93,15 +93,9 @@
             				</div>
 		            	</div>
 		            	<hr>
-		            	@if(Auth::check())
-						<div class="form-group">
-		            		<input type="submit" id="submit" value="Share" class="btn btn-primary btn-lg pull-right">
-		            	</div>
-		            	@else
 		            	<div class="form-group">
 		            		<a data-toggle="tab" href="#personal"><button class="btn btn-primary btn-lg pull-right">Continue</button></a>
 		            	</div>
-		            	@endif
 			        </div>
 			        <div id="personal" class="tab-pane fade">
 			        	<div class="form-group">
