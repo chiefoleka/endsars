@@ -16,6 +16,12 @@
 	height: 300px;
 }
 
+@media(max-width: 767px) {
+	.tweet {
+		height: auto;
+	}
+}
+
 .incident {
 	background-color: #fff; 
 	padding: 20px;

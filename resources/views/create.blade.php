@@ -42,10 +42,10 @@
 		                                </span>
 		                            @endif
 		            			</div>
-		            			<div class="col-md-6">
+		            			<div class="col-md-6 col-xs-12">
 		            				<label for="date">When did it happen?</label>
 		            				<div class="row">
-			            				<span class="col-md-6 {{ $errors->has('month') ? ' has-error' : '' }}">
+			            				<span class="col-md-6 col-xs-12 {{ $errors->has('month') ? ' has-error' : '' }}">
 			            					<select name="month" class="form-control" required>
 				            					@foreach(config('dateinfo.month') as $key => $value)
 				            					<option value="{{$key}}">{{$value}}</option>
@@ -57,7 +57,7 @@
 				                                </span>
 				                            @endif
 			            				</span>
-			            				<span class="col-md-6 {{ $errors->has('year') ? ' has-error' : '' }}">
+			            				<span class="col-md-6 col-xs-12 {{ $errors->has('year') ? ' has-error' : '' }}">
 			            					<select name="year" class="form-control" required>
 				            					@foreach(config('dateinfo.year') as $key => $value)
 				            					<option value="{{$value}}">{{$value}}</option>
@@ -79,7 +79,7 @@
 		            		<br><hr>
 		            		<div class="row {{ $errors->has('actions') ? ' has-error' : '' }}">
 		            			@foreach($actions as $action)
-	            				<span class="col-md-6" style="margin-bottom: 10px">
+	            				<span class="col-md-6 col-xs-12" style="margin-bottom: 10px">
 	            					<input type="checkbox" name="actions[]" value="{{$action->id}}"> {{$action->name}}
 	            				</span>
 	            				@endforeach
@@ -118,11 +118,11 @@
 						</div>
 						<div class="form-group">
 							<div class="row">
-			            		<span class="col-md-6">
+			            		<span class="col-md-6 col-xs-12">
 									<label for=name>Phone Number</label>
 									<input type="text" name="phone" class="form-control" placeholder="phone number">
 								</span>
-			            		<span class="col-md-6">
+			            		<span class="col-md-6 col-xs-12">
 									<label for=name>Twitter handle</label>
 									<input type="text" name="twitter" class="form-control" placeholder="twitter">
 								</span>
@@ -132,11 +132,11 @@
 						<div class="form-group">
 							<p>If you would like to track activities around your report, then provide a password to create an account right away.</p>
 							<div class="row">
-			            		<span class="col-md-6">
+			            		<span class="col-md-6 col-xs-12">
 									<label for=name>Password</label>
 									<input type="password" name="password" class="form-control" placeholder="">
 								</span>
-								<span class="col-md-6">
+								<span class="col-md-6 col-xs-12">
 									<label for=name>Confirm Password</label>
 									<input type="password" name="password_confirmation" class="form-control" placeholder="" required>
 								</span>
