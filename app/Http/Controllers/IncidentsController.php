@@ -14,7 +14,7 @@ use Validator;
 class IncidentsController extends Controller
 {
     public function index()
-    {	$incidents = Incidents::paginate(2);
+    {	$incidents = Incidents::paginate(20);
     	foreach ($incidents as $incident) {
     		$incident->summary 	= self::summary($incident->incident,$incident->id);
     		$incident->when 	= \Carbon\Carbon::parse($incident->when);
