@@ -10,18 +10,45 @@ use App\Location;
 use App\Incidents;
 use Auth;
 use Validator;
+use Abraham\TwitterOAuth\TwitterOAuth;
 
 class IncidentsController extends Controller
 {
-    public function index()
-    {	$incidents = Incidents::orderBy('created_at', 'desc')->paginate(20);
+    public function index(Request $request)
+    {	
+    	if(isset($request->page)) {
+    		$noPage = false;
+    	}
+    	else {
+    		$noPage = true;
+    	}
+    	$incidents = Incidents::orderBy('created_at', 'desc')->paginate(20);
     	foreach ($incidents as $incident) {
     		$incident->summary 	= self::summary($incident->incident,$incident->id);
     		$incident->when 	= \Carbon\Carbon::parse($incident->when);
     	}
         return view('index', [
-        	'incidents' => $incidents
+        	'incidents' => $incidents,
+        	'noPage'	=> $noPage
         ]);
+    }
+
+    public function tweets(){
+    	$access_token = "";
+    	$access_token_secret = "";
+
+    	$connection = new TwitterOAuth(env('TWITTER_CKEY'), env('TWITTER_CSECRET'), $access_token, $access_token_secret);
+
+    	$tweets = $connection->get("search/tweets", ["q" => "%23EndSARS", "count" => 100, "exclude_replies" => true]);
+    	
+    	foreach ($tweets->statuses as $tweet) {
+    		$tweet->date = \Carbon\Carbon::parse($tweet->created_at);
+    	}
+
+    	return response()->json(array(
+            'success' => true,
+            'data'   => $tweets->statuses
+        ));
     }
 
     public function single(Incidents $id)

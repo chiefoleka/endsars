@@ -17,6 +17,8 @@ Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 
 Route::get('/terms', 'HomeController@terms')->name('terms');
 
+Route::get('/getTweets', 'IncidentsController@tweets');
+
 Route::get('/incidents/{id}', 'IncidentsController@single');
 
 Route::post('/incidents/create', 'IncidentsController@store')->name('share');
