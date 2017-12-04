@@ -145,7 +145,7 @@ class IncidentsController extends Controller
             'twitter'   => 'nullable|string|max:15'
         ];
         Validator::make($request->all(), $validator)->validate();
-        $user           = User::firstOrCreate(['name' => $request->name], ['twitter' => $request->twitter]);
+        $user           = User::firstOrCreate(['twitter' => $request->twitter], ['name' => $request->name]);
         
         $incident = Incidents::create([
             'id'            => Uuid::generate()->string,
