@@ -60,7 +60,7 @@
 		function getTweetBox(handle,name,tweet,retweets){
 			var div = document.createElement('div')
             div.classList.add('col-md-4','tweet')
-            var data = '<a href="https://twitter.com/'+handle+'"><h4>'+name+'\'s Tweet</h4></a>'+
+            var data = '<a href="https://twitter.com/'+handle+'"><h4>'+name+'</h4></a>'+
 						'<div class="row summary">'+tweet+'</div>'+
 						'<span><i class="fa fa-retweet"></i>'+retweets+' &nbsp;</span>'
             div.innerHTML = data
