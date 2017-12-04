@@ -28,6 +28,6 @@ class User extends Authenticatable
     ];
 
     public function incidents(){
-        return $this->belongsTo('App\Incidents');
+        return $this->hasMany('App\Incidents');
     }
 }

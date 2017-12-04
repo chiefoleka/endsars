@@ -26,7 +26,7 @@ class ActionSeeder extends Seeder
     public function run()
     {
         foreach ($this->action as $action) {
-        	Action::create(['name'=>$action]);
+        	Action::create(['name' => $action]);
     	}
     }
 }

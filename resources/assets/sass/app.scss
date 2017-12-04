@@ -7,3 +7,27 @@
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+.incident-header {
+	background-color: #f3f3f3; 
+	margin-bottom: 40px;
+}
+.incident {
+	background-color: #fff; 
+	padding: 20px;
+	margin-bottom: 40px;
+}
+.ul-left-shift {
+	margin-left: -20px;
+}
+.summary {
+	background-color: #fff; 
+	padding:20px 15px;
+}
+.hero-text {
+	margin-bottom: 50px;
+}
+.flex-center {
+	margin: 0 auto; 
+	display: table;
+}

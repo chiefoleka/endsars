@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Uuids;
 
 class Incidents extends Model
 {
@@ -10,8 +11,14 @@ class Incidents extends Model
 
     public $guarded = [];
 
+    public $incrementing = false;
+
     public function user(){
     	return $this->belongsTo('App\User');
+    }
+
+    public function location(){
+    	return $this->belongsTo('App\Location');
     }
 
     public function actions(){

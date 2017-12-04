@@ -16,7 +16,7 @@ class CreateIncidentActionTable extends Migration
         Schema::create('incident_action', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('action_id');
-            $table->integer('incident_id');
+            $table->uuid('incident_id');
             $table->timestamps();
         });
     }

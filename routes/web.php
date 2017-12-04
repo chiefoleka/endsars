@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IncidentsController@index')->name('homepage');
+
+Route::get('/incidents/{id}', 'IncidentsController@single');
+
+Route::post('/incidents/create', 'IncidentsController@store')->name('share');
+
+Route::get('/share', 'IncidentsController@create')->name('shareincident');
 
 Auth::routes();
 

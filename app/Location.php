@@ -9,4 +9,6 @@ class Location extends Model
     public $table = 'locations';
 
     public $guarded = [];
+
+    public $timestamps = false;
 }

@@ -14,13 +14,14 @@ class CreateIncidentsTable extends Migration
     public function up()
     {
         Schema::create('incidents', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
             $table->text('incident');
             $table->integer('user_id');
-            $table->integer('location');
+            $table->integer('location_id');
             $table->date('when');
             $table->boolean('resolved')->default(false);
             $table->timestamps();
+            $table->primary('id');
         });
     }
 

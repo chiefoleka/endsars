@@ -53,7 +53,7 @@ class LocationSeeder extends Seeder
     ];
     public function run()
     {	foreach ($this->location as $state) {
-        	Location::create(['name'=>$state]);
+            Location::create(['name' => $state]);
     	}
     }
 }

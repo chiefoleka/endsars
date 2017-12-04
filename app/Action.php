@@ -10,4 +10,6 @@ class Action extends Model
 
     public $guarded = [];
 
+    public $timestamps = false;
+
 }

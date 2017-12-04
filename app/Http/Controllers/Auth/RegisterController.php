@@ -49,10 +49,10 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
             'phone' => 'nullable|string|max:11',
             'twitter' => 'nullable|string|max:15',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'nullable|string|min:6|confirmed',
+            'password' => 'nullable|string|min:6|confirmed'
         ]);
     }
 
@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone' => isset($data['phone'])? $data['phone'] : null,
             'twitter' => isset($data['twitter'])? $data['twitter'] : null,
-            'password' => isset($data['password'])? bcrypt($data['password']) : null,
+            'password' => isset($data['password'])? bcrypt($data['password']) : null
         ]);
     }
 }
