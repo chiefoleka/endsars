@@ -12,7 +12,7 @@
 			   	<p>{{$error}}</p>
 			   	@endforeach
 			@endif
-		    <form class="form" action="{{route('share')}}" method="POST">
+		    <form class="form" action="{{route('createback')}}" method="POST">
 		    	{{csrf_field()}}
         		<div class="tab-content">
         			<div id="incident" class="tab-pane fade in active">
@@ -103,12 +103,8 @@
 		            	</div>
 		            	@endif
 			        </div>
-			        @if(!Auth::check())
 			        <div id="personal" class="tab-pane fade">
-			        	<h3 class="text-center">Please fill out your details below</h3>
-			        	<hr>
-			        	<p style="color:red">* required</p>
-						<div class="form-group">
+			        	<div class="form-group">
 							<div class="row">
 			            		<span class="col-md-6 col-xs-12">
 									<label for=name>What is your name? *</label>
@@ -120,17 +116,12 @@
 								</span>
 							</div>
 						</div>
-						<div class="form-group">
-							<label for=name>Your email address? *</label>
-							<input type="email" name="email" class="form-control" placeholder="email" required>
-						</div>
 						<hr>
 			        	<div class="form-group">
 			        		<a data-toggle="tab" href="#incident"><button class="btn btn-default btn-lg">Back</button></a>
 		            		<input type="submit" id="submit" name="Share" class="btn btn-success btn-lg pull-right">
 		            	</div>
 			        </div>
-			        @endif
 	        	</div>
 		    </form>
         </div>

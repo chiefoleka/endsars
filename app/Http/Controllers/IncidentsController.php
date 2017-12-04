@@ -66,6 +66,13 @@ class IncidentsController extends Controller
     	]);
     }
 
+    public function createhidden() {
+        return view('createback', [
+            'actions'   => Action::all(),
+            'locations' => Location::all()
+        ]);
+    }
+
     public function store(Request $request) {
     	$user_id = '';
     	$guest = [
@@ -120,6 +127,36 @@ class IncidentsController extends Controller
     	$incident->actions()->syncWithoutDetaching($request->actions);
 
     	\Session::flash('success', 'Your incident has been recorded');
+        return back();
+        
+    }
+
+    public function createback(Request $request) {
+        if(!Auth::check()){
+            abort('403', 'Unauthorized');
+        }
+        $validator = [
+            'incident'  => 'required',
+            'actions'   => 'nullable|array',
+            'location'  => 'required|integer',
+            'month'     => 'required|digits:2',
+            'year'      => 'required|integer',
+            'name'      => 'required|string|max:255',
+            'twitter'   => 'nullable|string|max:15'
+        ];
+        Validator::make($request->all(), $validator)->validate();
+        $user           = User::firstOrCreate(['name' => $request->name], ['twitter' => $request->twitter]);
+        
+        $incident = Incidents::create([
+            'id'            => Uuid::generate()->string,
+            'incident'      => $request->incident,
+            'user_id'       => $user->id,
+            'location_id'   => $request->location,
+            'when'          => \Carbon\Carbon::create($request->year, $request->month, '01')
+        ]);
+        $incident->actions()->syncWithoutDetaching($request->actions);
+
+        \Session::flash('success', 'Your incident has been recorded');
         return back();
         
     }
