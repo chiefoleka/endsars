@@ -11,7 +11,7 @@
 	            	<h4>{{$incident->user->name}}'s Incident <small class="pull-right"><i class="fa fa-map-marker"> {{$incident->location->name}}</i> &nbsp; <i class="fa fa-clock-o"> {{$incident->when->year}}</i></small></h4>
 	            </a>
 	            <div class="row summary">
-	            	{{$incident->summary}}
+	            	{!! $incident->summary !!}
 	            </div>
 	        </div>
         @endforeach
