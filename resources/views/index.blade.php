@@ -39,7 +39,7 @@
 		        	@foreach($incidents as $incident)
 			    	<div class="col-md-12 incident-header">
 			            <a href="{{url('incidents')}}/{{$incident->id}}">
-			            	<h4>{{$incident->user->name}}'s Incident <small class="pull-right"><i class="fa fa-map-marker"> {{$incident->location->name}}</i> &nbsp; <i class="fa fa-clock-o"> {{$incident->when->year}}</i></small></h4>
+			            	<h4>{{$incident->user->name}}<small class="pull-right"><i class="fa fa-map-marker"> {{$incident->location->name}}</i> &nbsp; <i class="fa fa-clock-o"> {{$incident->when->year}}</i></small></h4>
 			            </a>
 			            <div class="row summary">
 			            	{!! $incident->summary !!}

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h2 class="text-center">{{$incident->user->name}}'s Incident</h2>
+            <h2 class="text-center">{{$incident->user->name}}</h2>
             <div class="row">
             	<span class="col-md-4"><i class="fa fa-map-marker"> {{$incident->location->name}}</i></span>
             	<span class="col-md-4 pull-right"><i class="fa fa-clock-o"> {{$incident->when->format('F')}}, {{$incident->when->year}}</i></span>
