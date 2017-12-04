@@ -27,7 +27,7 @@ Route::post('/incidents/createback', 'IncidentsController@createback')->name('cr
 
 Route::get('/share', 'IncidentsController@create')->name('shareincident');
 
-Route::get('/createback', 'IncidentsController@createhidden')->name('shareincident');
+Route::get('/createback', 'IncidentsController@createhidden');
 
 Auth::routes();
 
