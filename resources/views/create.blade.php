@@ -120,11 +120,11 @@
 							<div class="row">
 			            		<span class="col-md-6">
 									<label for=name>Phone Number</label>
-									<input type="text" name="phone" class="form-control" placeholder="phone number" required>
+									<input type="text" name="phone" class="form-control" placeholder="phone number">
 								</span>
 			            		<span class="col-md-6">
 									<label for=name>Twitter handle</label>
-									<input type="text" name="twitter" class="form-control" placeholder="twitter" required>
+									<input type="text" name="twitter" class="form-control" placeholder="twitter">
 								</span>
 							</div>
 						</div>
@@ -134,7 +134,7 @@
 							<div class="row">
 			            		<span class="col-md-6">
 									<label for=name>Password</label>
-									<input type="password" name="password" class="form-control" placeholder="" required>
+									<input type="password" name="password" class="form-control" placeholder="">
 								</span>
 								<span class="col-md-6">
 									<label for=name>Confirm Password</label>
