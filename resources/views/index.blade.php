@@ -11,31 +11,12 @@
         <div class="col-md-8 col-md-offset-2">
 			<h3 class="text-center hero-text">Stories of people who have had a bad encounter with SARS</h3>
         	<ul class="nav nav-tabs">
-        		@if($noPage)
-			  	<li class="active"><a data-toggle="tab" href="#tweets">Tweets</a></li>
-			  	<li><a data-toggle="tab" href="#stories">Stories</a></li>
-			  	@else
-				<li><a data-toggle="tab" href="#tweets">Tweets</a></li>
 			  	<li class="active"><a data-toggle="tab" href="#stories">Stories</a></li>
-			  	@endif
+				<li><a data-toggle="tab" href="#tweets">Tweets</a></li>
 			</ul>
 				
 			<div class="tab-content">
-				@if($noPage)
-				<div id="tweets" class="tab-pane fade in active">
-				@else
-				<div id="tweets" class="tab-pane fade">
-				@endif
-					<div class="flex-center" style="margin-top: 40px">
-						<i class="fa fa-spinner fa-5x fa-spin"></i>
-						<p class="text-center">Loading tweets ... </p>
-					</div>
-				</div>
-				@if($noPage)
-				<div id="stories" class="tab-pane fade">
-				@else
 				<div id="stories" class="tab-pane fade in active">
-				@endif
 		        	@foreach($incidents as $incident)
 			    	<div class="col-md-12 incident-header">
 			            <a href="{{url('incidents')}}/{{$incident->id}}">
@@ -50,6 +31,12 @@
 			        	{{ $incidents->links() }}
 			        </div>
 			    </div>
+				<div id="tweets" class="tab-pane fade">
+					<div class="flex-center" style="margin-top: 40px">
+						<i class="fa fa-spinner fa-5x fa-spin"></i>
+						<p class="text-center">Loading tweets ... </p>
+					</div>
+				</div>
 		    </div>
         </div>
     </div>
