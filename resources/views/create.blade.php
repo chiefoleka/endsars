@@ -115,14 +115,14 @@
 									<input type="text" name="name" class="form-control" placeholder="fullname" required>
 								</span>
 			            		<span class="col-md-6 col-xs-12">
-									<label for=name>Twitter handle</label>
+									<label for=name>Twitter handle *</label>
 									<input type="text" name="twitter" class="form-control" placeholder="twitter">
 								</span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for=name>Your email address? *</label>
-							<input type="email" name="email" class="form-control" placeholder="email" required>
+							<label for=name>Your email address?</label>
+							<input type="email" name="email" class="form-control" placeholder="email">
 						</div>
 						<hr>
 			        	<div class="form-group">
