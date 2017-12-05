@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Action;
 
-class ActionSeeder extends Seeder
+class ActionSeederUpdate extends Seeder
 {
     /**
      * Run the database seeds.
