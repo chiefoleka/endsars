@@ -20,7 +20,6 @@ class TweetsController extends Controller
         		echo "This thing is now empty";
         		break;
         	}
-        	echo $id."\n";
 	        foreach ($tweets->statuses as $tweet) {
 	        	Tweets::firstOrCreate(['id' => $tweet->id],[
 	        		'handle' 	=> $tweet->user->screen_name,
