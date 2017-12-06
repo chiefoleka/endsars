@@ -14,11 +14,13 @@ class TweetsController extends Controller
 
         $connection = new TwitterOAuth(env('TWITTER_CKEY'), env('TWITTER_CSECRET'), $access_token, $access_token_secret);
 
-        for($i=0;$i<10000;$i++){
-        $tweets = $connection->get("search/tweets", ["q" => "%23EndSARS OR %23PoliceReformNG -filter:retweets", 'count' =>50,  "since" => "2017-12-02", "until" => "2017-12-07", "exclude_replies" => false, "tweet_mode" => "extended", "max_id" => $id, "result_type" => "recent"]);
+        for($i=0;$i<10;$i++){
+        	$tweets = $connection->get("search/tweets", ["q" => "%23EndSARS OR %23PoliceReformNG -filter:retweets", 'count' =>50,  "since" => "2017-12-02", "until" => "2017-12-07", "exclude_replies" => false, "tweet_mode" => "extended", "max_id" => $id, "result_type" => "recent"]);
         	if(empty($tweets->statuses)) {
+        		echo "This thing is now empty";
         		break;
         	}
+        	echo $id."\n";
 	        foreach ($tweets->statuses as $tweet) {
 	        	Tweets::firstOrCreate(['id' => $tweet->id],[
 	        		'handle' 	=> $tweet->user->screen_name,
@@ -31,7 +33,8 @@ class TweetsController extends Controller
 	    }
         return response()->json(array(
             'success' 			=> true,
-            'data'   			=> "Tweets added"
+            'data'   			=> "Tweets added",
+            'id'   				=> $id
         ));
     }
 }
