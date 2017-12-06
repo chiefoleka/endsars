@@ -8,6 +8,7 @@ use App\User;
 use App\Action;
 use App\Location;
 use App\Incidents;
+use App\Tweets;
 use Auth;
 use Validator;
 use Abraham\TwitterOAuth\TwitterOAuth;
@@ -39,11 +40,7 @@ class IncidentsController extends Controller
 
     	$connection = new TwitterOAuth(env('TWITTER_CKEY'), env('TWITTER_CSECRET'), $access_token, $access_token_secret);
 
-    	$tweets = $connection->get("search/tweets", ["q" => "%23EndSARS", "count" => 30, "exclude_replies" => true]);
-    	
-    	foreach ($tweets->statuses as $tweet) {
-    		$tweet->date = \Carbon\Carbon::parse($tweet->created_at);
-    	}
+    	$tweets = $connection->get("search/tweets", ["q" => "%23EndSARS -filter:retweets", "count" => 30, "exclude_replies" => true]);
 
     	return response()->json(array(
             'success' => true,
@@ -77,7 +74,7 @@ class IncidentsController extends Controller
     	$user_id = '';
     	$guest = [
     		'name' 		=> 'required|string|max:255',
-            'email' 	=> 'required|string|email|max:255|unique:users',
+            'email' 	=> 'nullable|string|email|max:255|unique:users',
             'phone' 	=> 'nullable|string|max:11',
             'twitter' 	=> 'nullable|string|max:15',
             'password' 	=> 'nullable|string|min:6|confirmed'

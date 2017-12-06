@@ -19,6 +19,12 @@ Route::get('/terms', 'HomeController@terms')->name('terms');
 
 Route::get('/getTweets', 'IncidentsController@tweets');
 
+Route::get('/getOldTweets/{id}', 'TweetsController@tweetsSince');
+
+Route::get('/getOldTweets', 'TweetsController@tweetsSince');
+
+Route::get('/getVideos', 'TweetsController@youtubeVideo');
+
 Route::get('/incidents/{id}', 'IncidentsController@single');
 
 Route::post('/incidents/create', 'IncidentsController@store')->name('share');
