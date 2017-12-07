@@ -13,7 +13,17 @@
 	margin-bottom: 40px;
 }
 .tweet {
-	height: 300px;
+	height: 250px;
+	div {
+		height: 200px;
+		overflow: scroll;
+	}
+	a {
+		h4 {
+			width: 100%;
+			overflow-x: hidden
+		}
+	}
 }
 
 @media(max-width: 767px) {

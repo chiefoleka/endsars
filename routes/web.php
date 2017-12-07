@@ -19,6 +19,16 @@ Route::get('/terms', 'HomeController@terms')->name('terms');
 
 Route::get('/getTweets', 'IncidentsController@tweets');
 
+Route::get('/stories', 'IncidentsController@stories');
+
+Route::get('/fetchOldTweets', 'IncidentsController@oldTweets');
+
+Route::get('/getTweets', 'IncidentsController@tweets');
+
+Route::post('/deleteTweet', 'IncidentsController@deleteTweet');
+
+Route::post('/addActions', 'IncidentsController@addActions');
+
 Route::get('/getOldTweets/{id}', 'TweetsController@tweetsSince');
 
 Route::get('/getOldTweets', 'TweetsController@tweetsSince');
@@ -38,3 +48,5 @@ Route::get('/createback', 'IncidentsController@createhidden');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/deleteTweets', 'HomeController@deleteTweets');

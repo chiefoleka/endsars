@@ -17,21 +17,55 @@ class IncidentsController extends Controller
 {
     public function index(Request $request)
     {	
-    	if(isset($request->page)) {
-    		$noPage = false;
-    	}
-    	else {
-    		$noPage = true;
-    	}
-    	$incidents = Incidents::orderBy('created_at', 'desc')->paginate(20);
-    	foreach ($incidents as $incident) {
-    		$incident->summary 	= self::summary($incident->incident,$incident->id);
-    		$incident->when 	= \Carbon\Carbon::parse($incident->when);
-    	}
-        return view('index', [
-        	'incidents' => $incidents,
-        	'noPage'	=> $noPage
-        ]);
+    	return view('index');
+    }
+
+    public function stories(Request $request)
+    {   
+        $incidents = Incidents::orderBy('created_at', 'desc')->paginate(20);
+        foreach ($incidents as $incident) {
+            $incident->summary  = self::summary($incident->incident,$incident->id);
+            $incident->when     = \Carbon\Carbon::parse($incident->when);
+            $incident->year     = $incident->when->year;
+            $incident->location = $incident->location->name;
+            $incident->name     = $incident->user->name;
+        }
+        return response()->json(array(
+            'success' => true,
+            'data'   => $incidents
+        ));
+    }
+
+    public function oldTweets() {
+        $tweets = Tweets::orderBy('id', 'desc')->paginate(30);
+        foreach ($tweets as $tweet) {
+            $tweet->id_str = "'".$tweet->id."'";
+        }
+        return response()->json(array(
+            'success'   => true,
+            'data'      => $tweets,
+            'actions'   => Action::all()
+        ));
+    }
+
+    public function deleteTweet(Request $request) {
+        $tweet = Tweets::find($request->id);
+        $tweet->delete();
+        return response()->json(array(
+            'success' => true,
+            'data'   => "Deleted"
+        ));
+    }
+
+    public function addActions(Request $request) {
+        $tweet = Tweets::find($request->id);
+        if($tweet->actions()->syncWithoutDetaching($request->actions))
+        {
+            return response()->json(array(
+                'success' => true,
+                'message'   => "Actions synced"
+            ));
+        }
     }
 
     public function tweets(){
@@ -92,9 +126,9 @@ class IncidentsController extends Controller
     		$user 			= new User;
 	        $user->name 	= $request->name;
 	        $user->email 	= $request->email;
-	        $user->phone 	= $request->phone;
-	        $user->twitter 	= $request->twitter;
-	        $user->password = bcrypt($request->password);
+	        // $user->twitter 	= $request->twitter;
+	        // $user->password = bcrypt($request->password);
+            $user->phone    = $request->phone;
 	        if($user->save()){
 	        	$user_id = $user->id;
 	        	if(!empty($request->password)){
