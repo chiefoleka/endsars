@@ -14,7 +14,7 @@
         </transition-group>
         <infinite-loading @infinite="loadmore">
             <span slot="no-more">
-              There are no more stories
+              There are no more feeds
             </span>
         </infinite-loading>
     </div>

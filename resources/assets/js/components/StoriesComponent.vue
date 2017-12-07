@@ -64,7 +64,6 @@
                     this.stories    = stories
                     this.total      = response.data.data.total
                     this.pageNo     = response.data.data.next_page_url
-                    console.log(this.stories)
                 }.bind(this))
             }
         },

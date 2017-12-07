@@ -9,7 +9,7 @@
         </transition-group>
         <infinite-loading @infinite="loadmore">
             <span slot="no-more">
-              There are no more stories
+              There are no more tweet stories
             </span>
         </infinite-loading>
     </div>
