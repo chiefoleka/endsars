@@ -12,7 +12,11 @@
                 <div class="row summary" v-html="story.summary"></div>
             </div>
         </transition-group>
-        
+        <infinite-loading @infinite="loadmore">
+            <span slot="no-more">
+              There are no more stories
+            </span>
+        </infinite-loading>
     </div>
 </template>
 
