@@ -58,7 +58,7 @@ class IncidentsController extends Controller
            $text = parse_url($url, PHP_URL_HOST) . parse_url($url, PHP_URL_PATH);
            $text = preg_replace("/^www./", "", $text);
 
-           return sprintf(\'<a rel="nowfollow" href="%s">%s</a>\', $url, $text);
+           return sprintf(\'<a rel="nowfollow" target="_blank" href="%s">%s</a>\', $url, $text);
         ');
 
        return preg_replace_callback($pattern, $callback, $text);
