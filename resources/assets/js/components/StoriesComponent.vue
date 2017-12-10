@@ -54,21 +54,18 @@
                     $state.complete();
                 }
                 
-            },
-            fetch : function(){
-                axios({
-                    url : '/stories'
-                }).then(function(response){
-                    this.loading    = false
-                    var stories     = response.data.data.data
-                    this.stories    = stories
-                    this.total      = response.data.data.total
-                    this.pageNo     = response.data.data.next_page_url
-                }.bind(this))
             }
         },
         mounted : function(){
-            this.fetch()
+            axios({
+                url : '/stories'
+            }).then(function(response){
+                this.loading    = false
+                var stories     = response.data.data.data
+                this.stories    = stories
+                this.total      = response.data.data.total
+                this.pageNo     = response.data.data.next_page_url
+            }.bind(this))
         }
     }
 </script>

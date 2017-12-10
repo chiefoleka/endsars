@@ -67,21 +67,17 @@
                     $state.complete();
                 }
                 
-            },
-            fetch : function(){
-                axios({
-                    url : '/fetchOldTweets'
-                }).then(function(response){
-                    this.loading    = false
-                    this.tweets     = response.data.data.data
-                    this.actions    = response.data.actions
-                    this.total      = response.data.data.total
-                    this.pageNo     = response.data.data.next_page_url
-                }.bind(this))
             }
         },
         mounted : function(){
-            this.fetch()
+            axios({
+                url : '/fetchOldTweets'
+            }).then(function(response){
+                this.loading    = false
+                this.tweets     = response.data.data.data
+                this.total      = response.data.data.total
+                this.pageNo     = response.data.data.next_page_url
+            }.bind(this))
         }
     }
 </script>
