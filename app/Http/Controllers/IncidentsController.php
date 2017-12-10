@@ -40,8 +40,9 @@ class IncidentsController extends Controller
         $tweets = Tweets::orderBy('id', 'desc')->paginate(30);
         foreach ($tweets as $tweet) {
             $tweet->id_str  = "'".$tweet->id."'";
-            $tweet->tweet   = htmlspecialchars_decode($this->_return_url($tweet->tweet));
-            $tweet->tweet   = htmlspecialchars_decode($this->_replace_handle($tweet->tweet));
+            $tweet->tweet   = $this->_return_url($tweet->tweet);
+            $tweet->tweet   = $this->_replace_handle($tweet->tweet);
+            $tweet->tweet   = htmlspecialchars_decode($this->_replace_hashtag($tweet->tweet));
         }
         return response()->json(array(
             'success'   => true,
@@ -66,10 +67,20 @@ class IncidentsController extends Controller
     }
 
     private function _replace_handle($text){
-        $pattern  = '#(?<=^|(?<=[^a-zA-Z0-9-_\.]))@([A-Za-z]+[A-Za-z0-9]+)#';
+        $pattern  = '#(?<=^|(?<=[^a-zA-Z0-9-_\.]))@([A-Za-z_]+[A-Za-z0-9_]+)#';
         $callback = create_function('$matches', '
            $handle  = array_shift($matches);
            return sprintf(\'<a rel="nowfollow" target="_blank" href="https://twitter.com/%s">%s</a>\', trim($handle,"@"), $handle);
+        ');
+
+       return preg_replace_callback($pattern, $callback, $text);
+    }
+
+    private function _replace_hashtag($text){
+        $pattern  = '/(?<=[\s>]|^)#(\w*[A-Za-z_]+\w*)\b(?!;)/';
+        $callback = create_function('$matches', '
+           $hashtag  = array_shift($matches);
+           return sprintf(\'<a rel="nowfollow" target="_blank" href="https://twitter.com/hashtag/%s?src=hash">%s</a>\', trim($hashtag,"#"), $hashtag);
         ');
 
        return preg_replace_callback($pattern, $callback, $text);
