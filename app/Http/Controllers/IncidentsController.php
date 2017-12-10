@@ -22,7 +22,7 @@ class IncidentsController extends Controller
 
     public function stories(Request $request)
     {   
-        $incidents = Incidents::orderBy('created_at', 'desc')->paginate(10);
+        $incidents = Incidents::orderBy('created_at', 'desc')->paginate(30);
         foreach ($incidents as $incident) {
             $incident->summary  = self::summary($incident->incident,$incident->id);
             $incident->when     = \Carbon\Carbon::parse($incident->when);

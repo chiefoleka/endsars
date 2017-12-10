@@ -53,7 +53,6 @@
                 }else{
                     $state.complete();
                 }
-                
             }
         },
         mounted : function(){

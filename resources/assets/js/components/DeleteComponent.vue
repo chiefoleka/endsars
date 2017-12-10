@@ -12,6 +12,9 @@
               There are no more stories
             </span>
         </infinite-loading>
+        <div class="flex-center" style="margin-top:40px">
+            <button @click="loadManual" class="btn btn-default" type="button" v-if="more & !loading">Load more</button>
+        </div>
     </div>
 </template>
 
@@ -25,7 +28,8 @@
                 actions : [],
                 pageNo  : null,
                 total   : null,
-                loading : true
+                loading : true,
+                more : true
             }
         },
         components : {
@@ -41,10 +45,7 @@
                     type    : 'json',
                 }).then((response) => {
                     console.log(response.data)
-                    var actions = this.actions
-                    this.actions = []
                     this.tweets.splice(this.tweets.indexOf(item),1)
-                    this.actions = actions
                 }) 
             },
             updateActions : function(item){
@@ -66,7 +67,22 @@
                 }else{
                     $state.complete();
                 }
-                
+            },
+            loadManual:function(){
+                if(this.pageNo !== null)
+                {
+                    axios({
+                        url:this.pageNo,
+                        method:'get'
+                    }).then((res)=>{
+                        this.pageNo = res.data.data.next_page_url;
+                        for(var i = 0; i<res.data.data.data.length; i++){
+                            this.tweets.push(res.data.data.data[i]);
+                        }
+                    })
+                }else{
+                    this.more   = false
+                }
             }
         },
         mounted : function(){
@@ -76,6 +92,7 @@
                 this.loading    = false
                 this.tweets     = response.data.data.data
                 this.total      = response.data.data.total
+                this.actions    = response.data.actions
                 this.pageNo     = response.data.data.next_page_url
             }.bind(this))
         }
