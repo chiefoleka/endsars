@@ -41,6 +41,7 @@ class IncidentsController extends Controller
         foreach ($tweets as $tweet) {
             $tweet->id_str  = "'".$tweet->id."'";
             $tweet->tweet   = htmlspecialchars_decode($this->_return_url($tweet->tweet));
+            $tweet->tweet   = htmlspecialchars_decode($this->_replace_handle($tweet->tweet));
         }
         return response()->json(array(
             'success'   => true,
@@ -59,6 +60,16 @@ class IncidentsController extends Controller
            $text = preg_replace("/^www./", "", $text);
 
            return sprintf(\'<a rel="nowfollow" target="_blank" href="%s">%s</a>\', $url, $text);
+        ');
+
+       return preg_replace_callback($pattern, $callback, $text);
+    }
+
+    private function _replace_handle($text){
+        $pattern  = '#(?<=^|(?<=[^a-zA-Z0-9-_\.]))@([A-Za-z]+[A-Za-z0-9]+)#';
+        $callback = create_function('$matches', '
+           $handle  = array_shift($matches);
+           return sprintf(\'<a rel="nowfollow" target="_blank" href="https://twitter.com/%s">%s</a>\', trim($handle,"@"), $handle);
         ');
 
        return preg_replace_callback($pattern, $callback, $text);
