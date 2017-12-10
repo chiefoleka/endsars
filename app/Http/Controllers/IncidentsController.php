@@ -39,13 +39,34 @@ class IncidentsController extends Controller
     public function oldTweets() {
         $tweets = Tweets::orderBy('id', 'desc')->paginate(30);
         foreach ($tweets as $tweet) {
-            $tweet->id_str = "'".$tweet->id."'";
+            $tweet->id_str  = "'".$tweet->id."'";
+            $tweet->tweet   = htmlspecialchars_decode($this->_return_url($tweet->tweet));
         }
         return response()->json(array(
             'success'   => true,
             'data'      => $tweets,
             'actions'   => Action::all()
         ));
+    }
+
+    private function _return_url($text){
+        $pattern  = '#\b(([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))#';
+        $callback = create_function('$matches', '
+           $url       = array_shift($matches);
+           $url_parts = parse_url($url);
+
+           $text = parse_url($url, PHP_URL_HOST) . parse_url($url, PHP_URL_PATH);
+           $text = preg_replace("/^www./", "", $text);
+
+           $last = -(strlen(strrchr($text, "/"))) + 1;
+           if ($last < 0) {
+               $text = substr($text, 0, $last) . "&hellip;";
+           }
+
+           return sprintf(\'<a rel="nowfollow" href="%s">%s</a>\', $url, $text);
+        ');
+
+       return preg_replace_callback($pattern, $callback, $text);
     }
 
     public function deleteTweet(Request $request) {

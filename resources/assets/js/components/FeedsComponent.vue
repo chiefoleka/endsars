@@ -7,7 +7,7 @@
         <transition-group name="fade" tags="div">
             <div class="col-md-4 tweet" style="margin-top: 40px" v-for="(tweet,index) in tweets" :key="index">
                 <a :href="'https://twitter.com/'+tweet.user.screen_name"><h4>{{tweet.user.name}}</h4></a>
-                <div class="row summary" v-html>{{tweet.text}}</div>
+                <div class="row summary" v-html="tweet.text"></div>
                 <span><i class="fa fa-retweet"></i> {{tweet.retweet_count}} &nbsp;</span>
                 <br>
             </div>

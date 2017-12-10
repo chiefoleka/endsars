@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-12" style="margin-top: 40px">
         <a :href="'https://twitter.com/'+tweet.handle"><h4>{{tweet.name}}</h4></a>
-        <div class="row summary" v-html>{{tweet.tweet}}</div>
+        <div class="row summary" v-html="tweet.tweet"></div>
         <span><i class="fa fa-retweet"></i> {{tweet.retweets}} &nbsp;</span>
         <div class="row">
             <span class="col-md-6 col-xs-12" style="margin-bottom: 10px" v-for="(action,index) in actions">
