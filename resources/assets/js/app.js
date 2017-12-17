@@ -28,6 +28,7 @@ window.Vue = require('vue')
 
 Vue.component('tweets', require('./components/TweetsComponent.vue'))
 Vue.component('feeds', require('./components/FeedsComponent.vue'))
+Vue.component('charts', require('./components/Charts.vue'))
 Vue.component('stories', require('./components/StoriesComponent.vue'))
 Vue.component('delete', require('./components/DeleteComponent.vue'))
 

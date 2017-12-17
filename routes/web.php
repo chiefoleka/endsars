@@ -23,6 +23,8 @@ Route::get('/stories', 'IncidentsController@stories');
 
 Route::get('/fetchOldTweets', 'IncidentsController@oldTweets');
 
+Route::get('/chartdata', 'IncidentsController@chartData');
+
 Route::get('/getTweets', 'IncidentsController@tweets');
 
 Route::post('/deleteTweet', 'IncidentsController@deleteTweet');

@@ -17,6 +17,9 @@
               There are no more stories
             </span>
         </infinite-loading>
+        <div class="flex-center" style="margin-top:40px">
+            <button @click="loadManual" class="btn btn-default" type="button" v-if="more & !loading">Load more</button>
+        </div>
     </div>
 </template>
 
@@ -28,7 +31,8 @@
                 stories : [],
                 pageNo  : null,
                 total   : null,
-                loading : true
+                loading : true,
+                more : true
             }
         },
         components : {
@@ -52,6 +56,22 @@
                     })
                 }else{
                     $state.complete();
+                }
+            },
+            loadManual:function(){
+                if(this.pageNo !== null)
+                {
+                    axios({
+                        url:this.pageNo,
+                        method:'get'
+                    }).then((res)=>{
+                        this.pageNo = res.data.data.next_page_url;
+                        for(var i = 0; i<res.data.data.data.length; i++){
+                            this.stories.push(res.data.data.data[i]);
+                        }
+                    })
+                }else{
+                    this.more   = false
                 }
             }
         },

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Webpatser\Uuid\Uuid;
 use App\User;
 use App\Action;
+use App\ActionIncidents;
 use App\Location;
 use App\Incidents;
 use App\Tweets;
@@ -22,7 +23,7 @@ class IncidentsController extends Controller
 
     public function stories(Request $request)
     {   
-        $incidents = Incidents::orderBy('created_at', 'desc')->paginate(30);
+        $incidents = Incidents::orderBy('created_at', 'desc')->paginate(3);
         foreach ($incidents as $incident) {
             $incident->summary  = self::summary($incident->incident,$incident->id);
             $incident->when     = \Carbon\Carbon::parse($incident->when);
@@ -48,6 +49,30 @@ class IncidentsController extends Controller
             'success'   => true,
             'data'      => $tweets,
             'actions'   => Action::all()
+        ));
+    }
+
+    public function chartData() {
+        $array  = [
+            'beaten' => ActionIncidents::where('action_id',1)->count(),
+            'arrested' => ActionIncidents::where('action_id',2)->count(),
+            'threated to be shot' => ActionIncidents::where('action_id',3)->count(),
+            'shot' => ActionIncidents::where('action_id',4)->count(),
+            'killed' => ActionIncidents::where('action_id',5)->count(),
+            'not found' => ActionIncidents::where('action_id',6)->count(),
+            'checked acc bal' => ActionIncidents::where('action_id',7)->count(),
+            'atm' => ActionIncidents::where('action_id',8)->count(),
+            'pos' => ActionIncidents::where('action_id',9)->count(),
+            'cash' => ActionIncidents::where('action_id',10)->count(),
+            'bank transfer' => ActionIncidents::where('action_id',11)->count(),
+            'collected phone' => ActionIncidents::where('action_id',12)->count(),
+            'checked twitter' => ActionIncidents::where('action_id',13)->count(),
+            'harrassed' => ActionIncidents::where('action_id',14)->count(),
+            'insulted' => ActionIncidents::where('action_id',15)->count()
+        ];
+        return response()->json(array(
+            'success'   => true,
+            'data'      => $array,
         ));
     }
 
