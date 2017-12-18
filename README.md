@@ -8,10 +8,10 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 To successfully install this project, you need to have
-> git
-> composer
-> node
-> npm
+* git
+* composer
+* node
+* npm
 
 ### Installing
 First, clone this project into a working directory accessible by your local server.
@@ -61,11 +61,11 @@ $ php artisan serve
 
 
 ## Additional Features
-> Anti-Spam
-> Parser to determine context of tweets received from twitter
-> Realtime graph/charts to display data
-> Extending stories to include legal actions/activities around police station
-> Tracking people who are missing as a result of SARS
+* Anti-Spam
+* Parser to determine context of tweets received from twitter
+* Realtime graph/charts to display data
+* Extending stories to include legal actions/activities around police station
+* Tracking people who are missing as a result of SARS
 
 ## Contributing
 
