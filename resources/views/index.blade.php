@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row" id="app">
         <div class="col-md-8 col-md-offset-2">
-			<h3 class="text-center hero-text">Stories of people who have had a bad encounter with SARS</h3>
+			<h3 class="text-center hero-text">#MySARSExperience</h3>
         	<ul class="nav nav-tabs">
 			  	<li class="active"><a data-toggle="tab" href="#stories">Stories</a></li>
 				<!-- <li><a data-toggle="tab" href="#tweets">Twitter Stories</a></li> -->

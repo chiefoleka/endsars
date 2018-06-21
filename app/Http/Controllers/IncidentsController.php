@@ -138,10 +138,14 @@ class IncidentsController extends Controller
     	$connection = new TwitterOAuth(env('TWITTER_CKEY'), env('TWITTER_CSECRET'), $access_token, $access_token_secret);
 
     	$tweets = $connection->get("search/tweets", ["q" => "%23EndSARS -filter:retweets", "count" => 30, "exclude_replies" => true]);
-
+        foreach ($tweets->statuses as $tweet) {
+            $tweet->text = $this->_return_url($tweet->text);
+            $tweet->text = $this->_replace_handle($tweet->text);
+            $tweet->text = htmlspecialchars_decode($this->_replace_hashtag($tweet->text));
+        }
     	return response()->json(array(
             'success' => true,
-            'data'   => $tweets->statuses
+            'data'    => $tweets->statuses
         ));
     }
 
