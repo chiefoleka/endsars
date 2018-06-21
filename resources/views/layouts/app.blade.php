@@ -40,7 +40,7 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'EndSARS') }}
                     </a>
-                    <a href="{{ route('shareincident') }}" class="pull-right visible-xs" style="padding-top: 15px; padding-right: 15px"><strong><i class="fa fa-plus"></i> Share your story</strong></a>
+                    <a href="https://s.surveyplanet.com/r1aUDNy-7" target="_blank" class="pull-right visible-xs" style="padding-top: 15px; padding-right: 15px"><strong><i class="fa fa-plus"></i> Share your story</strong></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -52,7 +52,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        <li><a href="{{ route('shareincident') }}"><strong><i class="fa fa-plus"></i> Share your story</strong></a></li>
+                        <li><a href="https://s.surveyplanet.com/r1aUDNy-7" target="_blank"><strong><i class="fa fa-plus"></i> Share your story</strong></a></li>
                         @guest
                            <!--  <li><a href="{{ route('login') }}">Login</a></li> -->
                         @else
